@@ -3,23 +3,25 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class ListFileFoder {
-    public static void directoryTree (String path) throws IOException {
+    public static void directoryTree(String path) throws IOException {
         File dir = new File(path);
         // kiểm tra file or folder tồn tại ko
-        if(dir.exists()){
-            System.out.println("Folder " +path+ "does not exits ");
+        if (dir.exists()) {
+            System.out.println("Folder " + path + "does not exits ");
         }
         //kiểm tra có phải thư mục ko
-        if(dir.isDirectory()){
+        if (dir.isDirectory()) {
             File[] list = dir.listFiles();//listFiles lấy danh sách file hay thư mục trong thư mục
-            if(list!=null){
-                for (File file:list){
+            //đ/k dừng đệ quy
+            if (list != null) {
+                for (File file : list) {
                     System.out.println(file.getCanonicalPath());//lấy đường dẫn file hay folder
                     directoryTree(file.getCanonicalPath());
                 }
             }
         }
     }
+
     public static void main(String[] args) throws IOException {
 
         System.out.println("The program shows the directory tree");
